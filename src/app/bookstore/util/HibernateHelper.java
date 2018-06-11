@@ -7,7 +7,6 @@ public final class HibernateHelper {
 
 	private static SessionFactory sf;
 	
-	@SuppressWarnings("deprecation")
 	public static SessionFactory getSessionFactory() {
 		if (sf == null) {
 			try {

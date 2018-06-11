@@ -1,12 +1,12 @@
 package app.bookstore.model.service;
 
+import app.bookstore.model.entity.Book;
+import app.bookstore.model.entity.OrderItem;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import app.bookstore.model.entity.Book;
-import app.bookstore.model.entity.OrderItem;
 
 public class ShoppingCart {
 

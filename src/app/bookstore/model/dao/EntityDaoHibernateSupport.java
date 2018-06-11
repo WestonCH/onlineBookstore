@@ -1,12 +1,12 @@
 package app.bookstore.model.dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 public abstract class EntityDaoHibernateSupport<TEntity> implements EntityDao<TEntity> {
 
@@ -31,7 +31,6 @@ public abstract class EntityDaoHibernateSupport<TEntity> implements EntityDao<TE
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public TEntity get(long id) {
 		Session session = this.getSession();
@@ -78,6 +77,7 @@ public abstract class EntityDaoHibernateSupport<TEntity> implements EntityDao<TE
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TEntity> findAll() {
+		@SuppressWarnings("deprecation")
 		List<TEntity> entities = this.getSession().createQuery("from " + entityClass.getSimpleName()).list();
 		return entities;
 	}
@@ -87,7 +87,8 @@ public abstract class EntityDaoHibernateSupport<TEntity> implements EntityDao<TE
 	public List<TEntity> findBy(String propertyName, Object propertyValue) {
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
 		queryString += "where e." + propertyName + "=:propertyValue";
-		Query query = this.getSession().createQuery(queryString);
+		Query<TEntity> query = this.getSession().createQuery(queryString);
+		@SuppressWarnings("deprecation")
 		List<TEntity> entities = query.setParameter("propertyValue", propertyValue).list();
 		return entities;
 	}

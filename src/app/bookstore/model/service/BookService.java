@@ -1,8 +1,8 @@
 package app.bookstore.model.service;
 
-import java.util.List;
-
 import app.bookstore.model.entity.Book;
+
+import java.util.List;
 
 public interface BookService {
 
